@@ -11,11 +11,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.razorpay.Checkout;
+import com.razorpay.PaymentData;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements PaymentResultListener {
+public class MainActivity extends AppCompatActivity implements PaymentResultWithDataListener {
 
     private Button buttonConfirmOrder;
     private EditText editTextPayment;
@@ -72,13 +74,10 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
             double total = Double.parseDouble(payment);
             total = total * 100;
             options.put("amount", total);
-
             JSONObject preFill = new JSONObject();
             preFill.put("email", "rajeev1995rajan@gmail.com");
             preFill.put("contact", "9781767938");
-
             options.put("prefill", preFill);
-
             co.open(activity, options);
         } catch (Exception e) {
             Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -86,18 +85,18 @@ public class MainActivity extends AppCompatActivity implements PaymentResultList
         }
     }
 
+
+
     @Override
-    public void onPaymentSuccess(String razorpayPaymentID) {
-        Toast.makeText(this, "Payment successfully done! " + razorpayPaymentID, Toast.LENGTH_SHORT).show();
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
+
+        Toast.makeText(this, "oid"+paymentData.getOrderId()+"pid"+paymentData.getPaymentId()+"user contact" +
+                paymentData.getUserContact()+"user email"+paymentData.getUserEmail()  , Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void onPaymentError(int code, String response) {
-        try {
-            Toast.makeText(this, "Payment error please try again", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.e("OnPaymentError", "Exception in onPaymentError", e);
-        }
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
+
     }
 }
