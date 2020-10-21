@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">RazorPay</string>
-    <string name="key">rzp_test_8ndBnXx8l3ESuO</string>
+    <string name="key">rzp_test_xxxxxxxx</string>   //put your api key
 </resources>
