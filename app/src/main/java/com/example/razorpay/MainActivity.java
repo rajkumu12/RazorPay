@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements PaymentResultWith
             total = total * 100;
             options.put("amount", total);
             JSONObject preFill = new JSONObject();
-            preFill.put("email", "rajeev1995rajan@gmail.com");
-            preFill.put("contact", "9781767938");
+            preFill.put("email", "rajxxxxxxxxxxxx@gmail.com");
+            preFill.put("contact", "978xxxxxxx8");
             options.put("prefill", preFill);
             co.open(activity, options);
         } catch (Exception e) {
